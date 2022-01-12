@@ -1,5 +1,8 @@
 import { useState } from "react"
 import Layout from "../../components/Layout"
+import axios from 'axios'
+import {registerUser} from '../../functions/auth'
+require('isomorphic-fetch');
 
 const Register = () =>{
 
@@ -25,7 +28,32 @@ const Register = () =>{
     const handleSubmit = (e) =>{
         e.preventDefault()
 
-        console.table({name,email,password})
+        //console.table({name,email,password})
+
+        /*registerUser(name,email,password)
+        .then((res)=>{
+            console.log("AXIOS DE FUNCTIONS",res)
+        })*/
+
+        axios.post(`http://localhost:8000/api/register`,{
+            name,
+            email,
+            password
+        }).then(response => console.log(response)).catch(error => console.log(error))
+
+       /* fetch('http://localhost:8000/api/register', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    name,
+    email,
+    password,
+  }),
+})
+  .then(response => response.json())
+  .then(data => console.log(data));*/
     }
 
     const RegisterForm = () =>{
