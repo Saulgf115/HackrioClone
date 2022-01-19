@@ -11,7 +11,10 @@ require('dotenv').config()
 const authRoutes = require('./routes/auth')
 
 //db connection
-mongoose.connect(process.env.DATABASE_CLOUD)
+mongoose.connect(process.env.DATABASE_CLOUD,{
+    useNewUrlParser: true,
+    useUnifiedTopology:true
+})
 .then(() => console.log("DB CONNECTED SUCCESFULLY IN THE CLOUD"))
 .catch((err) => {
     console.log("DB CONNECTED FAILED",err)
